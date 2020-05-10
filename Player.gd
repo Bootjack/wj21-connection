@@ -1,14 +1,22 @@
+class_name Player
 extends KinematicBody2D
+
+signal disinfected
+signal infected
 
 export var speed:float = 3.0
 export var tilemap_paths = []
 export var tilemap_heights = []
 
 var height:float = 0.0
+var infection = 0.0
+var infection_rate = -1.0
 var tilemaps = []
 var vertical:float = 0.0
 
 func _ready():
+	connect("disinfected", self, "_on_disinfected")
+	connect("infected", self, "_on_infected")
 	for path in tilemap_paths:
 		var node = get_node(path)
 		tilemaps.append(node)
@@ -26,6 +34,14 @@ func _process(delta):
 		jump()
 
 	fall(delta)
+	infection = max(0.0, infection + infection_rate)
+	$Label.text = "%.1f" % [infection]
+
+func _on_disinfected(infectiousness:float):
+	infection_rate -= infectiousness
+
+func _on_infected(infectiousness:float):
+	infection_rate += infectiousness
 
 func fall(delta):
 	var tile_floor_height = floor_height()
@@ -55,6 +71,12 @@ func floor_height():
 		tilemap_idx += 1
 	
 	return highest
+
+func get_class():
+	return "Player"
+	
+func is_class(name:String):
+	return name == "Player" or .is_class(name)
 
 func on_ground():
 	var tile_floor_height = floor_height()
