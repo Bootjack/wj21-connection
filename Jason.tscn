@@ -469,20 +469,23 @@ current = true
 script = ExtResource( 5 )
 target_path = NodePath("../YSort/Player")
 
-[node name="Control" type="Control" parent="Camera2D"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -250.541
-margin_top = -271.195
-margin_right = 250.0
-margin_bottom = -231.195
+margin_left = -250.271
+margin_top = 32.0
+margin_right = 250.271
+margin_bottom = 96.0
 script = ExtResource( 8 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 player_path = NodePath("../../YSort/Player")
 
-[node name="InfectedLabel" type="Label" parent="Camera2D/Control"]
+[node name="InfectedLabel" type="Label" parent="CanvasLayer/Control"]
 anchor_right = 0.2
 anchor_bottom = 0.75
 text = "INFECTED"
@@ -492,7 +495,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InfectionBar" type="TextureProgress" parent="Camera2D/Control"]
+[node name="InfectionBar" type="TextureProgress" parent="CanvasLayer/Control"]
 anchor_left = 0.25
 anchor_top = 0.2
 anchor_right = 0.75
@@ -505,7 +508,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthyLabel" type="Label" parent="Camera2D/Control"]
+[node name="HealthyLabel" type="Label" parent="CanvasLayer/Control"]
 anchor_left = 0.8
 anchor_right = 1.0
 anchor_bottom = 0.75
@@ -517,7 +520,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MeterLabel" type="Label" parent="Camera2D/Control"]
+[node name="MeterLabel" type="Label" parent="CanvasLayer/Control"]
 anchor_top = 0.736467
 anchor_right = 1.0
 anchor_bottom = 1.08647

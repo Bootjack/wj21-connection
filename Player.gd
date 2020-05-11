@@ -35,7 +35,6 @@ func _process(delta):
 
 	fall(delta)
 	infection = max(0.0, infection + infection_rate)
-	$Label.text = "%.1f" % [infection]
 
 func _on_disinfected(infectiousness:float):
 	infection_rate -= infectiousness
