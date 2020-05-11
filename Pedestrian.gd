@@ -1,7 +1,7 @@
 class_name Pedestrian
 extends KinematicBody2D
 
-var infectiousness:float = 4.0
+var infectiousness:float = 2.0
 
 func _ready():
 	$InfectionZone.connect("body_entered", self, "infect")

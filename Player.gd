@@ -10,7 +10,7 @@ export var tilemap_heights = []
 
 var height:float = 0.0
 var infection = 0.0
-var infection_rate = -1.0
+var infection_rate = -0.5
 var tilemaps = []
 var vertical:float = 0.0
 
