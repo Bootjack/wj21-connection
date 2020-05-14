@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 signal disinfected
 signal infected
+signal picked_up
 
 export var top_speed:float = 6.0
 export var tilemap_paths = []
@@ -11,6 +12,7 @@ export var tilemap_heights = []
 var height:float = 0.0
 var infection:float = 0.0
 var infection_rate:float = -0.5
+var inventory = []
 var is_sprinting:bool = false
 var sprint_timer:Timer
 var tilemaps = []
@@ -25,7 +27,8 @@ func _ready():
 	
 	connect("disinfected", self, "_on_disinfected")
 	connect("infected", self, "_on_infected")
-	
+	connect("picked_up", self, "_on_picked_up")
+		
 	for path in tilemap_paths:
 		var node = get_node(path)
 		tilemaps.append(node)
@@ -54,6 +57,9 @@ func _on_disinfected(infectiousness:float):
 
 func _on_infected(infectiousness:float):
 	infection_rate += infectiousness
+
+func _on_picked_up(item:Node):
+	inventory.append(item)
 
 func fall(delta):
 	var tile_floor_height = floor_height()

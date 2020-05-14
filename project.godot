@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Level.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Pedestrian",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Player.gd"
 } ]
 _global_script_class_icons={
+"Level": "",
 "Pedestrian": "",
 "Player": ""
 }

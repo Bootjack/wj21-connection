@@ -63,7 +63,7 @@ custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.254902, 0.45098, 0.796078, 1 )
 custom_colors/font_color_hover = Color( 0.796078, 1, 0.188235, 1 )
 custom_colors/font_color_pressed = Color( 0.945098, 0.968627, 0.690196, 1 )
-text = "Start"
+text = "Play"
 flat = true
 
 [node name="QuitButton" type="Button" parent="Canvas/Menu/Buttons"]

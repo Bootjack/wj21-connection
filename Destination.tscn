@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Destination.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 100.0
+
+[node name="Destination" type="Area2D"]
+position = Vector2( 1174.31, 269.017 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Collision2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
