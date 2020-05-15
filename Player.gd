@@ -125,7 +125,7 @@ func move(direction:Vector2):
 
 func slide(delta):
 	velocity *= 1.0 - friction
-	move_and_collide(velocity)
+	move_and_slide(velocity * 100.0)
 
 func sprint():
 	if (!is_sprinting and on_ground()):
