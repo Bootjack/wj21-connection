@@ -1,0 +1,123 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://fonts/Titan_One/TitanOne-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://PlayerSelection.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+font_data = ExtResource( 2 )
+
+[node name="PlayerSelection" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Characters" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -7.55664
+margin_top = 3.77838
+margin_right = -7.55664
+margin_bottom = 3.77838
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StanleyCard" type="Button" parent="Characters"]
+margin_left = 88.0
+margin_top = 265.0
+margin_right = 164.0
+margin_bottom = 335.0
+focus_mode = 1
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Label" type="Label" parent="Characters/StanleyCard"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Stanley
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChiefCard" type="Button" parent="Characters"]
+margin_left = 345.0
+margin_top = 265.0
+margin_right = 421.0
+margin_bottom = 335.0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Label" type="Label" parent="Characters/ChiefCard"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Chief"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DashCard" type="Button" parent="Characters"]
+margin_left = 602.0
+margin_top = 265.0
+margin_right = 678.0
+margin_bottom = 335.0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Label" type="Label" parent="Characters/DashCard"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Dash"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SlippyCard" type="Button" parent="Characters"]
+margin_left = 859.0
+margin_top = 265.0
+margin_right = 935.0
+margin_bottom = 335.0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Label" type="Label" parent="Characters/SlippyCard"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Slippy"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+margin_left = -190.5
+margin_right = 190.5
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 1 )
+text = "Choose a Character"
+align = 1

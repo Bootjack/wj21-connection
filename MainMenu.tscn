@@ -63,13 +63,37 @@ custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.254902, 0.45098, 0.796078, 1 )
 custom_colors/font_color_hover = Color( 0.796078, 1, 0.188235, 1 )
 custom_colors/font_color_pressed = Color( 0.945098, 0.968627, 0.690196, 1 )
-text = "Play"
+text = "Start"
 flat = true
 
-[node name="QuitButton" type="Button" parent="Canvas/Menu/Buttons"]
+[node name="NextButton" type="Button" parent="Canvas/Menu/Buttons"]
 margin_top = 48.0
 margin_right = 512.0
 margin_bottom = 92.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.254902, 0.45098, 0.796078, 1 )
+custom_colors/font_color_hover = Color( 0.796078, 1, 0.188235, 1 )
+custom_colors/font_color_pressed = Color( 0.945098, 0.968627, 0.690196, 1 )
+disabled = true
+text = "Next Level"
+flat = true
+
+[node name="MenuButton" type="Button" parent="Canvas/Menu/Buttons"]
+margin_top = 96.0
+margin_right = 512.0
+margin_bottom = 140.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.254902, 0.45098, 0.796078, 1 )
+custom_colors/font_color_hover = Color( 0.796078, 1, 0.188235, 1 )
+custom_colors/font_color_pressed = Color( 0.945098, 0.968627, 0.690196, 1 )
+disabled = true
+text = "Main Menu"
+flat = true
+
+[node name="QuitButton" type="Button" parent="Canvas/Menu/Buttons"]
+margin_top = 144.0
+margin_right = 512.0
+margin_bottom = 188.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.254902, 0.45098, 0.796078, 1 )
 custom_colors/font_color_hover = Color( 0.796078, 1, 0.188235, 1 )

@@ -1,17 +1,16 @@
+class_name HeadsUpDisplay
 extends CanvasLayer
 
-export var player_path:NodePath
+export var color_healthy = Color(0.313726, 0.662745, 0.098039)
+export var color_warning = Color(1, 0.867188, 0)
+export var color_infected = Color(0.660156, 0.04455, 0.04455)
 
-var color_healthy = Color(0.313726, 0.662745, 0.098039)
-var color_warning = Color(1, 0.867188, 0)
-var color_infected = Color(0.660156, 0.04455, 0.04455)
 var gradient:Gradient
 var player:Player
 var tolerance = 500.0
 
 func _ready():
 	$Control/InfectionBar.max_value = tolerance
-	player = get_node(player_path)
 	_init_gradient()
 
 func _process(delta):
@@ -27,3 +26,11 @@ func _init_gradient():
 	gradient.add_point(0.3, color_warning)
 	gradient.add_point(0.1, color_infected)
 
+func get_class():
+	return "HeadsUpDisplay"
+
+func is_class(name:String):
+	return name == "HeadsUpDisplay" or .is_class(name)
+
+func toggle():
+	$Control.visible = !$Control.visible

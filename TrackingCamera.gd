@@ -1,11 +1,9 @@
+class_name TrackingCamera
 extends Camera2D
-
-export var target_path:NodePath
 
 var target
 
 func _ready():
-	target = get_node(target_path)
 	global_position.x = target.global_position.x + 200
 	global_position.y = target.global_position.y
 
@@ -19,3 +17,9 @@ func _process(delta):
 		global_position.y -= 200 - target_local.y
 	if (target_local.y < -200):
 		global_position.y += 200 + target_local.y
+
+func get_class():
+	return "TrackingCamera"
+	
+func is_class(name:String):
+	return name == "TrackingCamera" or .is_class(name)

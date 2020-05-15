@@ -5,19 +5,25 @@ signal disinfected
 signal infected
 signal picked_up
 
-export var top_speed:float = 6.0
-export var tilemap_paths = []
-export var tilemap_heights = []
-
+var friction:float
 var height:float = 0.0
 var infection:float = 0.0
-var infection_rate:float = -0.5
+var infection_rate:float
 var inventory = []
 var is_sprinting:bool = false
+var sprint_factor:float
 var sprint_timer:Timer
 var tilemaps = []
+var tilemap_heights = []
+var top_speed:float
 var velocity:Vector2
 var vertical:float
+
+func _init():
+	friction = 0.3
+	infection_rate = 0.0
+	sprint_factor = 2.0
+	top_speed = 4.0
 
 func _ready():
 	sprint_timer = Timer.new()
@@ -28,10 +34,6 @@ func _ready():
 	connect("disinfected", self, "_on_disinfected")
 	connect("infected", self, "_on_infected")
 	connect("picked_up", self, "_on_picked_up")
-		
-	for path in tilemap_paths:
-		var node = get_node(path)
-		tilemaps.append(node)
 
 func _process(delta):
 	if (Input.is_action_pressed("left")):
@@ -39,9 +41,9 @@ func _process(delta):
 	if (Input.is_action_pressed("right")):
 		move(Vector2(1.0, 0.0))
 	if (Input.is_action_pressed("up")):
-		move(Vector2(-0.2, -0.8))
+		move(Vector2(0.0, -1.0))
 	if (Input.is_action_pressed("down")):
-		move(Vector2(0.2, 0.8))
+		move(Vector2(0.0, 1.0))
 	if (Input.is_action_just_pressed("jump")):
 		jump()
 	if (Input.is_action_just_pressed("sprint")):
@@ -90,12 +92,6 @@ func floor_height():
 	
 	return highest
 
-func friction():
-	if (on_ground()):
-		return 0.2
-	else:
-		return 0.2
-
 func get_class():
 	return "Player"
 	
@@ -111,14 +107,14 @@ func jump():
 		vertical = 5.0
 
 func move(direction:Vector2):
-	velocity += direction
+	velocity += direction * top_speed
 	var speed = min(velocity.length(), top_speed)
 	if (is_sprinting):
 		speed *= 2.0
 	velocity = velocity.normalized() * speed
 
 func slide(delta):
-	velocity *= 1.0 - friction()
+	velocity *= 1.0 - friction
 	move_and_collide(velocity)
 
 func sprint():

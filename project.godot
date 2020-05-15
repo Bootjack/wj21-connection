@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Destination",
+"language": "GDScript",
+"path": "res://Destination.gd"
+}, {
+"base": "CanvasLayer",
+"class": "HeadsUpDisplay",
+"language": "GDScript",
+"path": "res://HeadsUpDisplay.gd"
+}, {
 "base": "Node2D",
 "class": "Level",
 "language": "GDScript",
@@ -19,15 +29,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Pedestrian.gd"
 }, {
+"base": "Node2D",
+"class": "Pickup",
+"language": "GDScript",
+"path": "res://Pickup.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Player.gd"
+}, {
+"base": "Control",
+"class": "PlayerSelection",
+"language": "GDScript",
+"path": "res://PlayerSelection.gd"
+}, {
+"base": "Camera2D",
+"class": "TrackingCamera",
+"language": "GDScript",
+"path": "res://TrackingCamera.gd"
 } ]
 _global_script_class_icons={
+"Destination": "",
+"HeadsUpDisplay": "",
 "Level": "",
 "Pedestrian": "",
-"Player": ""
+"Pickup": "",
+"Player": "",
+"PlayerSelection": "",
+"TrackingCamera": ""
 }
 
 [application]

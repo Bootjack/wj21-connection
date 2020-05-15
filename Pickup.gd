@@ -1,3 +1,4 @@
+class_name Pickup
 extends Node2D
 
 export var elevation:float = 0.0
@@ -12,3 +13,9 @@ func on_body_entered(body:Node):
 		$ProximityArea.collision_layer = 0
 		$ProximityArea.collision_mask = 0
 		visible = false
+
+func get_class():
+	return "Pickup"
+	
+func is_class(name:String):
+	return name == "Pickup" or .is_class(name)
