@@ -119,18 +119,6 @@ func jump():
 	if (on_ground()):
 		vertical = 5.0
 
-func move_left():
-	move(Vector2(-1.0, 0.0))
-
-func move_right():
-	move(Vector2(1.0, 0.0))		
-
-func move_up():
-	move(Vector2(0.0, -1.0))
-
-func move_down():
-	move(Vector2(0.0, 1.0))
-
 func move(direction:Vector2):
 	is_idle = false
 	velocity += direction * top_speed
@@ -139,7 +127,10 @@ func move(direction:Vector2):
 		speed *= 2.0
 
 	if (!is_jumping):
-		$Sprite.flip_h = direction.x > 0
+		if (direction.x > 0):
+			$Sprite.flip_h = true
+		elif (direction.x < 0):
+			$Sprite.flip_h = false
 		if (is_sprinting):
 			$Sprite.play("Run")
 		else:

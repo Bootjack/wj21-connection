@@ -17,23 +17,27 @@ func get_class():
 
 func handle_movement():
 	var parent = .handle_movement()
+	
+	var movement = Vector2.ZERO
 
 	if (Input.is_action_pressed("left")):
-		move_left()
+		movement += Vector2(-1.0, 0.0)
 	elif (Input.is_action_pressed("right")):
-		move_right()
-
+		movement += Vector2(1.0, 0.0)
+		
 	if (Input.is_action_pressed("up")):
-		move_up()
+		movement += Vector2(0.0, -1.0)
 	elif (Input.is_action_pressed("down")):
-		move_down()
+		movement += Vector2(0.0, 1.0)
 
 	if (Input.is_action_just_pressed("jump")):
 		jump()
 
 	if (Input.is_action_just_pressed("sprint")):
 		sprint()
-
+	
+	if (movement.length() > 0.0):
+		move(movement)
 	parent.resume()
 
 func is_class(name:String):
