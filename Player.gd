@@ -9,7 +9,15 @@ func _init():
 	sprint_factor = 2.0
 	top_speed = 4.0
 
-func _process(delta):
+func _on_picked_up(item:Node):
+	inventory.append(item)
+
+func get_class():
+	return "Player"
+
+func handle_movement():
+	var parent = .handle_movement()
+
 	if (Input.is_action_pressed("left")):
 		move_left()
 	elif (Input.is_action_pressed("right")):
@@ -26,11 +34,7 @@ func _process(delta):
 	if (Input.is_action_just_pressed("sprint")):
 		sprint()
 
-func _on_picked_up(item:Node):
-	inventory.append(item)
-
-func get_class():
-	return "Player"
+	parent.resume()
 
 func is_class(name:String):
 	return name == "Player" or .is_class(name)

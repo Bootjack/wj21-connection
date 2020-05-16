@@ -7,16 +7,15 @@ export var color_infected = Color(0.660156, 0.04455, 0.04455)
 
 var gradient:Gradient
 var player:Player
-var tolerance = 500.0
 
 func _ready():
-	$Control/InfectionBar.max_value = tolerance
+	$Control/InfectionBar.max_value = player.tolerance
 	_init_gradient()
 
 func _process(delta):
-	var ratio = clamp(player.infection / tolerance, 0.0, 1.0)
+	var ratio = clamp(player.infection / player.tolerance, 0.0, 1.0)
 	$Control/InfectionBar.tint_progress = gradient.interpolate(1.0 - ratio)
-	$Control/InfectionBar.value = (1.0 - ratio) * tolerance
+	$Control/InfectionBar.value = (1.0 - ratio) * player.tolerance
 
 func _init_gradient():
 	gradient = Gradient.new()

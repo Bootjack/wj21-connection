@@ -44,16 +44,12 @@ func _ready():
 	for path in objective_paths:
 		objectives.append(get_node(path))
 
-func objectives_met():
-	for item in objectives:
-		if (!player.inventory.has(item)):
-			return false
-	return true
+func _process(_delta:float):
+	if (player.infection >= player.tolerance):
+		emit_signal("level_lost")
 
 func _on_destination_reached():
-	print("destination reached")
 	if (objectives_met()):
-		print("objectives met")
 		emit_signal("level_won")
 
 func get_class():
@@ -70,3 +66,8 @@ func modify_player(attributes:Dictionary):
 	if (attributes["top_speed"]):
 		player.top_speed = attributes["top_speed"]
 
+func objectives_met():
+	for item in objectives:
+		if (!player.inventory.has(item)):
+			return false
+	return true

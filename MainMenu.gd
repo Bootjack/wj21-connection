@@ -20,6 +20,8 @@ func level_lost():
 	level_over()
 
 func level_over():
+	$Canvas/Menu/Buttons/StartButton.disconnect("button_up", self, "restart_level")
+	$Canvas/Menu/Buttons/StartButton.connect("button_up", self, "start_level")
 	active_scene.disconnect("level_won", self, "level_won")
 	active_scene.disconnect("level_lost", self, "level_lost")
 	$Canvas/Menu.visible = true
@@ -49,6 +51,7 @@ func quit_game():
 
 func restart_level():
 	level_over()
+	start_level()
 
 func start_game():
 	$Canvas/Menu/Buttons/StartButton.text = "Restart"

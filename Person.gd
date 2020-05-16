@@ -17,6 +17,7 @@ var sprint_factor:float
 var sprint_timer:Timer
 var tilemaps = []
 var tilemap_heights = []
+var tolerance = 500.0
 var top_speed:float
 var velocity:Vector2
 var vertical:float
@@ -42,10 +43,7 @@ func _ready():
 
 func _process(delta):
 	infection = max(0.0, infection + infection_rate)
-	is_idle = true
-	yield()
-	if (is_idle and !is_jumping):
-		idle()
+	handle_movement()
 
 func _physics_process(delta):
 	fall(delta)
@@ -99,9 +97,9 @@ func get_class():
 	return "Person"
 
 func handle_movement():
-	var should_idle = true
-
-	if (should_idle and !is_jumping):
+	is_idle = true
+	yield()
+	if (is_idle and !is_jumping):
 		idle()
 
 func idle():
@@ -123,13 +121,9 @@ func jump():
 
 func move_left():
 	move(Vector2(-1.0, 0.0))
-	if (!is_jumping):
-		$Sprite.flip_h = false
 
 func move_right():
 	move(Vector2(1.0, 0.0))		
-	if (!is_jumping):
-		$Sprite.flip_h = true
 
 func move_up():
 	move(Vector2(0.0, -1.0))
@@ -145,6 +139,7 @@ func move(direction:Vector2):
 		speed *= 2.0
 
 	if (!is_jumping):
+		$Sprite.flip_h = direction.x > 0
 		if (is_sprinting):
 			$Sprite.play("Run")
 		else:
