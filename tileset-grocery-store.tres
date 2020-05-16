@@ -21,10 +21,10 @@ points = PoolVector2Array( 17.3148, 33, 0, 33, 0, 0.0501404, 17.3148, 0.0501404 
 points = PoolVector2Array( 24, 26, 1.28851, 26, 1.28851, 1.15393, 24, 1.15393 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
-points = PoolVector2Array( 128, 107.839, 0.404297, 107.839, 0.404297, 2.22534, 128, 2.22534 )
+points = PoolVector2Array( 128, 96, 0, 96, 0, 32, 128, 32 )
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
-points = PoolVector2Array( 128, 106.874, 0.512329, 106.874, 0.512329, 2.70758, 128, 2.70758 )
+points = PoolVector2Array( 128, 96, 0, 96, 0, 32, 128, 32 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
 points = PoolVector2Array( 63.0656, 75.0872, 1.33716, 75.0872, 1.33716, 1.30252, 63.0656, 1.30252 )
@@ -290,7 +290,7 @@ points = PoolVector2Array( 34.054, 17.8859, 62.5069, 17.8859, 62.5069, 71.8982, 
 14/texture = ExtResource( 1 )
 14/tex_offset = Vector2( 0, 0 )
 14/modulate = Color( 1, 1, 1, 1 )
-14/region = Rect2( 470, 534, 24, 26 )
+14/region = Rect2( 420, 452, 32, 32 )
 14/tile_mode = 0
 14/occluder_offset = Vector2( 0, 0 )
 14/navigation_offset = Vector2( 0, 0 )
@@ -307,3 +307,17 @@ points = PoolVector2Array( 34.054, 17.8859, 62.5069, 17.8859, 62.5069, 71.8982, 
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 14/z_index = 0
+15/name = "tileset-connection.png 15"
+15/texture = ExtResource( 1 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 452, 452, 32, 32 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 0, 0 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape_one_way = false
+15/shape_one_way_margin = 0.0
+15/shapes = [  ]
+15/z_index = 0
