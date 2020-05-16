@@ -3,10 +3,10 @@ extends Control
 
 signal selected
 
-var player:Player
+var attributes:Dictionary
 
 func _ready():
-	player = Player.new()
+	attributes = {"friction": null, "infection_rate": null, "top_speed": null}
 	$Characters/ChiefCard.connect("gui_input", self, "set_player_chief")
 	$Characters/DashCard.connect("gui_input", self, "set_player_dash")
 	$Characters/SlippyCard.connect("gui_input", self, "set_player_slippy")
@@ -14,17 +14,17 @@ func _ready():
 
 func set_player_dash(event):
 	if (event.is_action("ui_accept")):
-		player.top_speed = 10.0
+		attributes["top_speed"] = 10.0
 		select_player()
 	
 func set_player_chief(event):
 	if (event.is_action("ui_accept")):
-		player.infection_rate = -0.5
+		attributes["infection_rate"] = -0.5
 		select_player()
 
 func set_player_slippy(event):
 	if (event.is_action("ui_accept")):
-		player.friction = 0.1
+		attributes["friction"] = 0.1
 		select_player()
 
 func set_player_stanley(event):
@@ -32,4 +32,4 @@ func set_player_stanley(event):
 		select_player()
 	
 func select_player():
-	emit_signal("selected", player)
+	emit_signal("selected", attributes)

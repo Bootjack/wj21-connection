@@ -1,5 +1,5 @@
 class_name Pedestrian
-extends KinematicBody2D
+extends Person
 
 var infectiousness:float = 2.0
 

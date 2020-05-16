@@ -17,15 +17,19 @@ var player:Player
 var tilemaps = []
 
 func _ready():
+	if (!player):
+		player = $YSort/Player
+	
 	for path in tilemap_paths:
 		var node = get_node(path)
 		tilemaps.append(node)
 	
-	var player_dummy = $YSort/Player
-	player.global_position = player_dummy.global_position
 	player.tilemaps = tilemaps
 	player.tilemap_heights = tilemap_heights
-	player_dummy.replace_by(player)
+	
+	for pedestrian in $YSort/Pedestrians.get_children():
+		pedestrian.tilemaps = tilemaps
+		pedestrian.tilemap_heights = tilemap_heights
 	
 	camera = TrackingCamera.new()
 	camera.target = player
@@ -47,7 +51,9 @@ func objectives_met():
 	return true
 
 func _on_destination_reached():
+	print("destination reached")
 	if (objectives_met()):
+		print("objectives met")
 		emit_signal("level_won")
 
 func get_class():
@@ -55,3 +61,12 @@ func get_class():
 
 func is_class(name:String):
 	return name == "Level" or .is_class(name)
+
+func modify_player(attributes:Dictionary):
+	if (attributes["friction"]):
+		player.friction = attributes["friction"]
+	if (attributes["infection_rate"]):
+		player.infection_rate = attributes["infection_rate"]
+	if (attributes["top_speed"]):
+		player.top_speed = attributes["top_speed"]
+
