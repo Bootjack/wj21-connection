@@ -37,29 +37,27 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 15.0
-height = 10.0
-
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="Shadow" type="Sprite" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 19 )
+shape = SubResource( 3 )
+
+[node name="Visualization" type="Node2D" parent="."]
+
+[node name="Shadow" type="Sprite" parent="Visualization"]
 modulate = Color( 0.215686, 0.188235, 0.188235, 0.498039 )
 position = Vector2( -3, 38 )
 scale = Vector2( 0.5, 0.25 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, 13 )
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="Visualization"]
 position = Vector2( -2, -8 )
 frames = SubResource( 1 )
 animation = "Idle"
 flip_h = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 19 )
-shape = SubResource( 2 )
 
 [node name="BGSong" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )

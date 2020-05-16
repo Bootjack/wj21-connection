@@ -34,8 +34,8 @@ func _ready():
 	sprint_timer.connect("timeout", self, "sprint_timeout")
 	add_child(sprint_timer)
 
-	$Sprite.connect("animation_finished", self, "idle")
-	$Sprite.play("Idle")
+	$Visualization/Sprite.connect("animation_finished", self, "idle")
+	$Visualization/Sprite.play("Idle")
 	
 	connect("disinfected", self, "_on_disinfected")
 	connect("infected", self, "_on_infected")
@@ -58,8 +58,8 @@ func _on_infected(infectiousness:float):
 func fall(delta):
 	var tile_floor_height = floor_height()
 	height = max(height + vertical * delta, tile_floor_height)
-	$Sprite.transform.origin.y = -26 * height
-	$Shadow.transform.origin.y = 48 - 26 * tile_floor_height
+	$Visualization/Sprite.transform.origin.y = -26 * height
+	$Visualization/Shadow.transform.origin.y = 48 - 26 * tile_floor_height
 	vertical -= 9.8 * delta
 	if (height >= tilemap_heights[1]):
 		collision_layer = 2
@@ -71,7 +71,7 @@ func fall(delta):
 	if (is_airborne and on_ground()):
 		is_airborne = false
 		is_jumping = false
-		$Sprite.connect("animation_finished", self, "idle")
+		$Visualization/Sprite.connect("animation_finished", self, "idle")
 		idle()
 
 	if (!on_ground()):
@@ -103,7 +103,7 @@ func handle_movement():
 		idle()
 
 func idle():
-	$Sprite.play("Idle")
+	$Visualization/Sprite.play("Idle")
 
 func is_class(name:String):
 	return name == "Person" or .is_class(name)
@@ -114,8 +114,8 @@ func on_ground():
 
 func jump():
 	is_jumping = true
-	$Sprite.disconnect("animation_finished", self, "idle")
-	$Sprite.play("Jump")
+	$Visualization/Sprite.disconnect("animation_finished", self, "idle")
+	$Visualization/Sprite.play("Jump")
 	if (on_ground()):
 		vertical = 5.0
 
@@ -128,13 +128,13 @@ func move(direction:Vector2):
 
 	if (!is_jumping):
 		if (direction.x > 0):
-			$Sprite.flip_h = true
+			$Visualization.scale.x = 1
 		elif (direction.x < 0):
-			$Sprite.flip_h = false
+			$Visualization.scale.x = -1
 		if (is_sprinting):
-			$Sprite.play("Run")
+			$Visualization/Sprite.play("Run")
 		else:
-			$Sprite.play("Walk")
+			$Visualization/Sprite.play("Walk")
 
 	velocity = velocity.normalized() * speed
 

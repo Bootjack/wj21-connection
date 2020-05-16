@@ -18,8 +18,8 @@ func _ready():
 	add_child(wait_timer)
 	wait_timer.connect("timeout", self, "_on_wait_timeout")
 
-	$InfectionZone.connect("body_entered", self, "infect")
-	$InfectionZone.connect("body_exited", self, "disinfect")
+	$Visualization/InfectionZone.connect("body_entered", self, "infect")
+	$Visualization/InfectionZone.connect("body_exited", self, "disinfect")
 
 func _on_wait_timeout():
 	is_waiting = false
