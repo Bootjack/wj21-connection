@@ -241,7 +241,5 @@ position = Vector2( 111.977, 284.897 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 script = ExtResource( 2 )
-target_path = NodePath("../YSort/Player")
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
-player_path = NodePath("../YSort/Player")

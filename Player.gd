@@ -38,16 +38,26 @@ func _ready():
 func _process(delta):
 	if (Input.is_action_pressed("left")):
 		move(Vector2(-1.0, 0.0))
-	if (Input.is_action_pressed("right")):
-		move(Vector2(1.0, 0.0))
+		$Sprite.flip_h = false
+		$Sprite.play("Walk")
+	elif (Input.is_action_pressed("right")):
+		move(Vector2(1.0, 0.0))		
+		$Sprite.play("Walk")		
+		$Sprite.flip_h = true
+	else:
+		$Sprite.play("Idle")
 	if (Input.is_action_pressed("up")):
 		move(Vector2(0.0, -1.0))
 	if (Input.is_action_pressed("down")):
 		move(Vector2(0.0, 1.0))
 	if (Input.is_action_just_pressed("jump")):
 		jump()
-	if (Input.is_action_just_pressed("sprint")):
+		$Sprite.play("Jump")	
+	if (Input.is_action_pressed("sprint")):
 		sprint()
+		$Sprite.play("Run")
+	else:
+		$Sprite.play("Walk")
 	infection = max(0.0, infection + infection_rate)
 
 func _physics_process(delta):
