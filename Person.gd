@@ -71,15 +71,15 @@ func _on_sprint_timeout():
 func fall(delta):
 	var tile_floor_height = floor_height()
 	height = max(height + vertical * delta, tile_floor_height)
-	$Visualization/Sprite.transform.origin.y = -26 * height
-	$Visualization/Shadow.transform.origin.y = 48 - 26 * tile_floor_height
+	$Visualization/Sprite.transform.origin.y = -24 * height
+	$Visualization/Shadow.transform.origin.y = 48 - 24 * tile_floor_height
 	vertical -= 9.8 * delta
-	if (height >= tilemap_heights[1]):
-		collision_layer = 2
-		collision_mask = 2
+	if (height >= tilemap_heights[2]):
+		layers = 4
+	elif (height >= tilemap_heights[1]):
+		layers = 2
 	else:
-		collision_layer = 1
-		collision_mask = 1
+		layers = 1
 
 	if (!is_immune and is_airborne and on_ground()):
 		is_airborne = false
@@ -92,17 +92,19 @@ func fall(delta):
 
 func floor_height():
 	var tile
-	var tile_height
 	var tile_position
-	var tilemap_idx = 0
 	var highest = 0.0
+	var tile_count = tilemaps.size()
+	var i = 0
 	
 	for tilemap in tilemaps:
 		tile_position = tilemap.world_to_map(global_position)
 		tile = tilemap.get_cellv(tile_position)
+		if (is_class("Player")):
+			print("tile_position: ", tile_position)
 		if (tile >= 0):
-			highest = max(highest, tilemap_heights[tilemap_idx])
-		tilemap_idx += 1
+			highest = max(highest, tilemap_heights[i])
+		i += 1
 	
 	return highest
 
