@@ -14,22 +14,26 @@
 [ext_resource path="res://sfx/jump.wav" type="AudioStream" id=12]
 [ext_resource path="res://sfx/run01.wav" type="AudioStream" id=13]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 15.0
+height = 10.0
+
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "Run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "Jump",
 "speed": 30.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
@@ -39,25 +43,6 @@ animations = [ {
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 19 )
-shape = SubResource( 3 )
-
-[node name="Visualization" type="Node2D" parent="."]
-
-[node name="Shadow" type="Sprite" parent="Visualization"]
-modulate = Color( 0.215686, 0.188235, 0.188235, 0.498039 )
-position = Vector2( -3, 38 )
-scale = Vector2( 0.5, 0.25 )
-texture = ExtResource( 1 )
-offset = Vector2( 0, 13 )
-
-[node name="Sprite" type="AnimatedSprite" parent="Visualization"]
-position = Vector2( -2, -8 )
-frames = SubResource( 1 )
-animation = "Idle"
-flip_h = true
 
 [node name="BGSong" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
@@ -71,3 +56,22 @@ volume_db = 10.0
 [node name="run" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 13 )
 volume_db = 24.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 19 )
+shape = SubResource( 1 )
+
+[node name="Visualization" type="Node2D" parent="."]
+
+[node name="Shadow" type="Sprite" parent="Visualization"]
+modulate = Color( 0.215686, 0.188235, 0.188235, 0.498039 )
+position = Vector2( -3, 38 )
+scale = Vector2( 0.5, 0.25 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, 13 )
+
+[node name="Sprite" type="AnimatedSprite" parent="Visualization"]
+position = Vector2( -2, -8 )
+frames = SubResource( 2 )
+animation = "Idle"
+flip_h = true
