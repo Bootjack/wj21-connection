@@ -17,14 +17,14 @@ height = 10.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "Sick",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 3 ) ],
