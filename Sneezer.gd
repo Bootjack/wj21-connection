@@ -18,3 +18,5 @@ func _on_infection_timeout():
 	infector.end_size = 5.0
 	infector.duration = 1.0
 	get_parent().add_child(infector)
+	is_immune = true
+	$Visualization/Sprite.play("Sick")

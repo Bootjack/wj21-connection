@@ -58,7 +58,7 @@ tile_data = PoolIntArray( 196605, 12, 0, 196606, 536870924, 0, 196607, 536870924
 [node name="Pedestrians" type="YSort" parent="YSort"]
 
 [node name="Pedestrian2" parent="YSort/Pedestrians" instance=ExtResource( 6 )]
-position = Vector2( 1843.05, 496.797 )
+position = Vector2( 1843.61, 496.797 )
 script = ExtResource( 10 )
 direction = Vector2( 0, -1 )
 distance = 200.0
