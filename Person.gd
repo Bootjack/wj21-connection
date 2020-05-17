@@ -1,9 +1,7 @@
 class_name Person
 extends KinematicBody2D
 
-signal disinfected
 signal infected
-signal picked_up
 
 var friction:float
 var height:float = 0.0
@@ -17,7 +15,7 @@ var sprint_factor:float
 var sprint_timer:Timer
 var tilemaps = []
 var tilemap_heights = []
-var tolerance = 500.0
+var tolerance = 10.0
 var top_speed:float
 var velocity:Vector2
 var vertical:float
@@ -37,9 +35,7 @@ func _ready():
 	$Visualization/Sprite.connect("animation_finished", self, "idle")
 	$Visualization/Sprite.play("Idle")
 	
-	connect("disinfected", self, "_on_disinfected")
 	connect("infected", self, "_on_infected")
-	connect("picked_up", self, "_on_picked_up")
 
 func _process(delta):
 	infection = max(0.0, infection + infection_rate)
@@ -49,11 +45,8 @@ func _physics_process(delta):
 	fall(delta)
 	slide(delta)
 
-func _on_disinfected(infectiousness:float):
-	infection_rate -= infectiousness
-
 func _on_infected(infectiousness:float):
-	infection_rate += infectiousness
+	infection += 10 * infectiousness
 
 func fall(delta):
 	var tile_floor_height = floor_height()

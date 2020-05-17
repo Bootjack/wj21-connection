@@ -1,13 +1,19 @@
 class_name Player
 extends Person
 
+signal picked_up
+
 var inventory = []
 
 func _init():
 	friction = 0.3
 	infection_rate = 0.0
 	sprint_factor = 2.0
+	tolerance = 30.0
 	top_speed = 4.0
+
+func _ready():
+	connect("picked_up", self, "_on_picked_up")
 
 func _on_picked_up(item:Node):
 	inventory.append(item)
