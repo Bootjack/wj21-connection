@@ -50,7 +50,8 @@ void fragment() {
 	float dist_from_center_y = 2.0 * abs(0.5 - pos.y);
 	float dist_from_center_x = 2.0 * abs(0.5 - pos.x);
 	float distance_from_center = sqrt((pow(dist_from_center_y, 2.0) + pow(dist_from_center_x, 2.0)));
-	float a = clamp(0.0, 1.0, 1.0 - distance_from_center - 0.5 * n);
+	float inverse_distance = 1.0 - distance_from_center - 0.5 * n;
+	float a = clamp(inverse_distance, 0.0, 1.0);
 	float r = n + 0.5 * t;
 	COLOR = vec4(r, infection_color.gb, a * strength);
 }
