@@ -5,10 +5,13 @@ signal infected
 
 var friction:float
 var height:float = 0.0
+var immunity_duration:float
+var immunity_timer:Timer
 var infection:float = 0.0
 var infection_rate:float
 var is_airborne:bool = false
 var is_idle:bool = false
+var is_immune:bool = false
 var is_jumping:bool = false
 var is_sprinting:bool = false
 var sprint_factor:float
@@ -22,14 +25,20 @@ var vertical:float
 
 func _init():
 	friction = 0.3
+	immunity_duration = 1.0
 	infection_rate = 0.0
 	sprint_factor = 2.0
 	top_speed = 4.0
 
 func _ready():
+	immunity_timer = Timer.new()
+	immunity_timer.one_shot = true
+	immunity_timer.connect("timeout", self, "_on_immunity_timeout")
+	add_child(immunity_timer)
+	
 	sprint_timer = Timer.new()
 	sprint_timer.one_shot = true
-	sprint_timer.connect("timeout", self, "sprint_timeout")
+	sprint_timer.connect("timeout", self, "_on_sprint_timeout")
 	add_child(sprint_timer)
 
 	$Visualization/Sprite.connect("animation_finished", self, "idle")
@@ -45,8 +54,19 @@ func _physics_process(delta):
 	fall(delta)
 	slide(delta)
 
+func _on_immunity_timeout():
+	is_immune = false
+	unhurt()
+
 func _on_infected(infectiousness:float):
-	infection += 10 * infectiousness
+	if (!is_immune):
+		infection += 10 * infectiousness
+		is_immune = true
+		immunity_timer.start(immunity_duration)
+		hurt()
+
+func _on_sprint_timeout():
+	is_sprinting = false
 
 func fall(delta):
 	var tile_floor_height = floor_height()
@@ -61,7 +81,7 @@ func fall(delta):
 		collision_layer = 1
 		collision_mask = 1
 
-	if (is_airborne and on_ground()):
+	if (!is_immune and is_airborne and on_ground()):
 		is_airborne = false
 		is_jumping = false
 		$Visualization/Sprite.connect("animation_finished", self, "idle")
@@ -92,8 +112,11 @@ func get_class():
 func handle_movement():
 	is_idle = true
 	yield()
-	if (is_idle and !is_jumping):
+	if (is_idle and !is_jumping and !is_immune):
 		idle()
+
+func hurt():
+	pass
 
 func idle():
 	$Visualization/Sprite.play("Idle")
@@ -119,11 +142,12 @@ func move(direction:Vector2):
 	if (is_sprinting):
 		speed *= 2.0
 
-	if (!is_jumping):
-		if (direction.x > 0):
-			$Visualization.scale.x = 1
-		elif (direction.x < 0):
-			$Visualization.scale.x = -1
+	if (direction.x > 0):
+		$Visualization.scale.x = 1
+	elif (direction.x < 0):
+		$Visualization.scale.x = -1
+
+	if (!is_immune and !is_jumping):
 		if (is_sprinting):
 			$Visualization/Sprite.play("Run")
 		else:
@@ -140,5 +164,5 @@ func sprint():
 		is_sprinting = true
 		sprint_timer.start(0.5)
 
-func sprint_timeout():
-	is_sprinting = false
+func unhurt():
+	pass

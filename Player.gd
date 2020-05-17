@@ -9,7 +9,7 @@ func _init():
 	friction = 0.3
 	infection_rate = 0.0
 	sprint_factor = 2.0
-	tolerance = 30.0
+	tolerance = 32.0
 	top_speed = 4.0
 
 func _ready():
@@ -46,7 +46,18 @@ func handle_movement():
 		musicNode.play()	
 	if (movement.length() > 0.0):
 		move(movement)
+
 	parent.resume()
+
+func hurt():
+	$Visualization/Sprite.disconnect("animation_finished", self, "idle")
+	$Visualization/Sprite.modulate = Color(0.521569, 0.701961, 0.07451)
+	$Visualization/Sprite.play("Hurt")
 
 func is_class(name:String):
 	return name == "Player" or .is_class(name)
+
+func unhurt():
+	$Visualization/Sprite.connect("animation_finished", self, "idle")
+	$Visualization/Sprite.modulate = Color.white
+	$Visualization/Sprite.play("Idle")

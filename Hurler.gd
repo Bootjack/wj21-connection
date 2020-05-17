@@ -6,7 +6,6 @@ func _init():
 	infection_period = 4.0
 
 func _ready():	
-	print("starting delay timer at: ", infection_phase)
 	infection_delay_timer.start(infection_phase)
 	$Visualization/Sprite.modulate = infection_color
 	
