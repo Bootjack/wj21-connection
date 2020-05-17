@@ -13,6 +13,8 @@ func on_body_entered(body:Node):
 		$ProximityArea.collision_layer = 0
 		$ProximityArea.collision_mask = 0
 		visible = false
+		var musicNode = $"AudioStreamPlayer2D"
+		musicNode.play()
 
 func get_class():
 	return "Pickup"
