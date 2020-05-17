@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Carrier.gd"
 }, {
+"base": "Pedestrian",
+"class": "Cougher",
+"language": "GDScript",
+"path": "res://Cougher.gd"
+}, {
 "base": "Area2D",
 "class": "Destination",
 "language": "GDScript",
@@ -24,8 +29,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://HeadsUpDisplay.gd"
 }, {
+"base": "Pedestrian",
+"class": "Hurler",
+"language": "GDScript",
+"path": "res://Hurler.gd"
+}, {
 "base": "Node2D",
-"class": "Infection",
+"class": "Infector",
 "language": "GDScript",
 "path": "res://Infector.gd"
 }, {
@@ -59,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://PlayerSelection.gd"
 }, {
+"base": "Pedestrian",
+"class": "Sneezer",
+"language": "GDScript",
+"path": "res://Sneezer.gd"
+}, {
 "base": "Camera2D",
 "class": "TrackingCamera",
 "language": "GDScript",
@@ -66,15 +81,18 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Carrier": "",
+"Cougher": "",
 "Destination": "",
 "HeadsUpDisplay": "",
-"Infection": "",
+"Hurler": "",
+"Infector": "",
 "Level": "",
 "Pedestrian": "",
 "Person": "",
 "Pickup": "",
 "Player": "",
 "PlayerSelection": "",
+"Sneezer": "",
 "TrackingCamera": ""
 }
 

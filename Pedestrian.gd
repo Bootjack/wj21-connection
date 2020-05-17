@@ -4,8 +4,10 @@ extends Person
 export var direction:Vector2 = Vector2.ZERO
 export var distance:float = 0.0
 export var infection_color = Color(0.356863, 1, 0.243137)
+export var infection_phase:float = 0.0
 export var wait_time:float = 0.0
 
+var infection_delay_timer:Timer
 var infection_period:float = 1.0
 var infection_timer:Timer
 var infector_res = preload("res://Infector.tscn")
@@ -18,16 +20,26 @@ func _init():
 
 func _ready():
 	reference_point = global_position
-	
+
+	infection_delay_timer = Timer.new()
+	infection_delay_timer.one_shot = true
+	add_child(infection_delay_timer)
+	infection_delay_timer.connect("timeout", self, "_on_infection_delay_timeout")
+
 	infection_timer = Timer.new()
 	add_child(infection_timer)
 	infection_timer.connect("timeout", self, "_on_infection_timeout")
-	#infection_timer.start(infection_period)
 
 	wait_timer = Timer.new()
 	wait_timer.one_shot = true
 	add_child(wait_timer)
 	wait_timer.connect("timeout", self, "_on_wait_timeout")
+	
+	_on_infected(0.0)
+
+func _on_infection_delay_timeout():
+	_on_infection_timeout()
+	infection_timer.start(infection_period)
 
 func _on_infected(infectiousness:float):
 	var is_infected = infection >= tolerance
@@ -52,8 +64,7 @@ func add_infector():
 	infector.position = Vector2(15.0, -15.0)
 	infector.duration = 0.0
 	infector.height = 1.0
-	infector.size = 2.0
-	#infector.rotation = atan2(direction.x, direction.y)
+	infector.start_size = 1.5
 	infector.rotation = 0.5 * PI
 	$Visualization.add_child(infector)
 
@@ -65,7 +76,7 @@ func handle_movement():
 
 	if (global_position.distance_to(reference_point) < distance):
 		move(direction)
-	elif (!is_waiting):
+	elif (wait_time > 0 and !is_waiting):
 		is_waiting = true
 		wait()
 	
