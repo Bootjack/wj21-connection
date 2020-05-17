@@ -9,6 +9,9 @@ func _ready():
 	print("starting delay timer at: ", infection_phase)
 	infection_delay_timer.start(infection_phase)
 	$Visualization/Sprite.modulate = infection_color
+	
+func idle():
+	$Visualization/Sprite.play("Sick")
 
 func _on_infection_timeout():
 	var infector = infector_res.instance()
@@ -20,3 +23,4 @@ func _on_infection_timeout():
 	infector.end_size = 1.5
 	infector.duration = 2.0
 	get_parent().add_child(infector)
+	$Visualization/Sprite.play("Idle")
