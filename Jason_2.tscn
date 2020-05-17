@@ -55,8 +55,8 @@ wait_time = 1.0
 [node name="Pedestrian2" parent="YSort/Pedestrians" instance=ExtResource( 6 )]
 position = Vector2( 1843.05, 496.797 )
 direction = Vector2( 0, -1 )
-distance = 100.0
-wait_time = 1.0
+distance = 200.0
+wait_time = 2.0
 
 [node name="Pedestrian8" parent="YSort/Pedestrians" instance=ExtResource( 6 )]
 position = Vector2( 1686.63, 341.082 )
@@ -119,8 +119,8 @@ wait_time = 2.0
 [node name="Pedestrian4" parent="YSort/Pedestrians" instance=ExtResource( 6 )]
 position = Vector2( 2174.07, 218.748 )
 direction = Vector2( 0, 1 )
-distance = 100.0
-wait_time = 1.0
+distance = 200.0
+wait_time = 2.0
 
 [node name="Pedestrian3" parent="YSort/Pedestrians" instance=ExtResource( 6 )]
 position = Vector2( 327.599, 488.17 )
@@ -149,7 +149,7 @@ position = Vector2( 790.232, 394.545 )
 elevation = 1.0
 
 [node name="Mulligan3" parent="YSort/Pickups" instance=ExtResource( 3 )]
-position = Vector2( 2177.75, 228.899 )
+position = Vector2( 2166.67, 238.506 )
 elevation = 1.0
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
