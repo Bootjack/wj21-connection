@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://art/white.png" type="Texture" id=1]
+[ext_resource path="res://Infector.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 32.0
+height = 0.0
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float strength = 1.0;
+uniform sampler2D noise;
+uniform sampler2D timeflow;
+
+varying vec2 pos;
+
+float cyclic(float t) {
+	float growth = 0.5;
+	float speed = 4.0;
+	float cyclic = growth * abs(1.0 - 2.0 * mod(t, speed) / speed);
+	return cyclic;
+}
+
+void fragment() {
+	float t = cyclic(TIME);
+	float intensity = 1.0 - abs(UV.x);
+	
+	vec2 timeshift = vec2(2.0 * UV.x, UV.y + TIME * 0.5 * strength);
+	float m = texture(timeflow, timeshift).r;
+	
+	float y = UV.y + TIME * 0.1 + m * 0.1;
+	float x = UV.x;
+	vec2 shifted = vec2(x, y);
+	float n = texture(noise, shifted, t).r;
+	float dist_from_center_y = 2.0 * abs(0.5 - UV.y);
+	float dist_from_center_x = 2.0 * abs(0.5 - UV.x);
+	float distance_from_center = sqrt((pow(dist_from_center_y, 2.0) + pow(dist_from_center_x, 2.0)));
+	float a = clamp(0.0, 1.0, 1.0 - distance_from_center - 0.5 * n);
+	float r = n + 0.5 * t;
+	COLOR = vec4(r, 1.0, 0.1, a * strength);
+}
+"
+
+[sub_resource type="OpenSimplexNoise" id=2]
+
+[sub_resource type="NoiseTexture" id=3]
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="OpenSimplexNoise" id=6]
+
+[sub_resource type="NoiseTexture" id=7]
+noise = SubResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/strength = 1.0
+shader_param/noise = SubResource( 3 )
+shader_param/timeflow = SubResource( 7 )
+
+[node name="Infection" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="InfectionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InfectionZone"]
+shape = SubResource( 5 )
+
+[node name="TextureShape" type="Sprite" parent="InfectionZone"]
+material = SubResource( 4 )
+texture = ExtResource( 1 )
