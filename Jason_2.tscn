@@ -11,8 +11,8 @@
 script = ExtResource( 2 )
 destination_path = NodePath("Destination")
 objective_paths = [ NodePath("YSort/Pickups/Mulligan") ]
-tilemap_paths = [ NodePath("FloorTileMap"), NodePath("YSort/PlatformTileMap"), NodePath("YSort/WallTileMap") ]
-tilemap_heights = [ 0.0, 1.0, 100.0 ]
+tilemap_paths = [ NodePath("FloorTileMap"), NodePath("YSort/PlatformTileMap"), NodePath("YSort/AisleTileMap"), NodePath("YSort/WallTileMap") ]
+tilemap_heights = [ 0.0, 1.0, 2.0, 100.0 ]
 
 [node name="FloorTileMap" type="TileMap" parent="."]
 mode = 2
@@ -27,12 +27,16 @@ tile_data = PoolIntArray( 196606, 536870919, 0, 196607, 536870919, 0, 131072, 53
 [node name="YSort" type="YSort" parent="."]
 
 [node name="PlatformTileMap" type="TileMap" parent="YSort"]
-position = Vector2( 0, -10 )
 mode = 2
 tile_set = ExtResource( 1 )
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( 131115, 3, 0, 131117, 3, 0, 131119, 2, 0, 131121, 2, 0, 131123, 2, 0, 131125, 3, 0, 196698, 536870913, 0, 196701, 536870913, 0, 196704, 536870913, 0, 196708, 536870923, 0, 327723, 2, 0, 327725, 3, 0, 327727, 2, 0, 327729, 3, 0, 327731, 2, 0, 327733, 2, 0, 327780, 536870923, 0, 393264, 5, 0, 393265, 536870917, 0, 458842, 536870913, 0, 458845, 536870913, 0, 458848, 536870913, 0, 458852, 536870923, 0, 524311, 5, 0, 524312, 536870917, 0, 524326, 5, 0, 524327, 536870917, 0, 524331, 3, 0, 524333, 2, 0, 524335, 3, 0, 524337, 2, 0, 524339, 2, 0, 524341, 3, 0 )
+tile_data = PoolIntArray( 196698, 536870913, 0, 196701, 536870913, 0, 196704, 536870913, 0, 196708, 536870923, 0, 327780, 536870923, 0, 393264, 5, 0, 393265, 536870917, 0, 458842, 536870913, 0, 458845, 536870913, 0, 458848, 536870913, 0, 458852, 536870923, 0, 524311, 5, 0, 524312, 536870917, 0, 524326, 5, 0, 524327, 536870917, 0 )
+
+[node name="AisleTileMap" type="TileMap" parent="YSort"]
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( 131115, 3, 0, 131117, 3, 0, 131119, 2, 0, 131121, 2, 0, 131123, 2, 0, 131125, 3, 0, 327723, 2, 0, 327725, 3, 0, 327727, 2, 0, 327729, 3, 0, 327731, 2, 0, 327733, 2, 0, 524331, 3, 0, 524333, 2, 0, 524335, 3, 0, 524337, 2, 0, 524339, 2, 0, 524341, 3, 0 )
 
 [node name="WallTileMap" type="TileMap" parent="YSort"]
 mode = 2
@@ -48,9 +52,10 @@ tile_data = PoolIntArray( 196605, 12, 0, 196606, 536870924, 0, 196607, 536870924
 [node name="Pedestrians" type="YSort" parent="YSort"]
 
 [node name="Pedestrian" parent="YSort/Pedestrians" instance=ExtResource( 6 )]
-position = Vector2( -268.523, 394.386 )
-distance = 150.0
-wait_time = 1.0
+position = Vector2( -270.034, 394.386 )
+direction = Vector2( 1, 0 )
+distance = 1.0
+wait_time = 2.0
 
 [node name="Pedestrian2" parent="YSort/Pedestrians" instance=ExtResource( 6 )]
 position = Vector2( 1843.05, 496.797 )

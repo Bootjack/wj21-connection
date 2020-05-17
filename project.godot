@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://HeadsUpDisplay.gd"
 }, {
 "base": "Node2D",
+"class": "Infection",
+"language": "GDScript",
+"path": "res://Infector.gd"
+}, {
+"base": "Node2D",
 "class": "Level",
 "language": "GDScript",
 "path": "res://Level.gd"
@@ -57,6 +62,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Destination": "",
 "HeadsUpDisplay": "",
+"Infection": "",
 "Level": "",
 "Pedestrian": "",
 "Person": "",
