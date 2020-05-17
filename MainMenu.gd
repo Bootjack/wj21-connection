@@ -3,7 +3,7 @@ extends Control
 var active_scene
 var level_index = 0
 var levels = [
-	preload("res://Jason_2.tscn")
+	preload("res://Jason.tscn")
 ]
 
 func _ready():	
