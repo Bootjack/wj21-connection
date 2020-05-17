@@ -32,10 +32,12 @@ func handle_movement():
 
 	if (Input.is_action_just_pressed("jump")):
 		jump()
-
+		var musicNode = $"jump"
+		musicNode.play()
 	if (Input.is_action_just_pressed("sprint")):
 		sprint()
-	
+		var musicNode = $"run"
+		musicNode.play()	
 	if (movement.length() > 0.0):
 		move(movement)
 	parent.resume()
