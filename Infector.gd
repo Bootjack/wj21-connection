@@ -40,6 +40,8 @@ func infect(body:PhysicsBody2D):
 func update_size():
 	$InfectionZone/TextureShape.material.set_shader_param("strength", strength)
 	$InfectionZone/TextureShape.scale = size * Vector2(1.0, 1.0 + height)
-	$InfectionZone/TextureShape.position.y -= 0.5 * height
+	$InfectionZone/TextureShape.position.y = -base_height * size
 	$InfectionZone/CollisionShape2D.shape.height = base_height * height * size
 	$InfectionZone/CollisionShape2D.shape.radius = base_radius * size
+	$InfectionZone/CollisionShape2D.position.y = -0.5 * base_radius * size
+

@@ -7,11 +7,11 @@
 [ext_resource path="res://art/animatedSprite/walk/00-walk01.png" type="Texture" id=5]
 [ext_resource path="res://art/animatedSprite/walk/00-walk03.png" type="Texture" id=6]
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 15.0
 height = 10.0
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
@@ -29,7 +29,7 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 19 )
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 
 [node name="Visualization" type="Node2D" parent="."]
 
@@ -42,6 +42,6 @@ offset = Vector2( 0, 13 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Visualization"]
 position = Vector2( -2, -8 )
-frames = SubResource( 9 )
+frames = SubResource( 2 )
 animation = "Idle"
 flip_h = true

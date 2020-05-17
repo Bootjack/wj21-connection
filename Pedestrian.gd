@@ -49,11 +49,12 @@ func _on_wait_timeout():
 func add_infector():
 	var infector = infector_res.instance();
 	infector.color = infection_color
-	infector.position = Vector2(15.0, -25.0)
+	infector.position = Vector2(15.0, -15.0)
 	infector.duration = 0.0
-	infector.height = 0.5
+	infector.height = 1.0
 	infector.size = 2.0
-	infector.rotation = PI / 2.0
+	#infector.rotation = atan2(direction.x, direction.y)
+	infector.rotation = 0.5 * PI
 	$Visualization.add_child(infector)
 
 func get_class():

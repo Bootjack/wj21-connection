@@ -3,11 +3,11 @@
 [ext_resource path="res://art/white.png" type="Texture" id=1]
 [ext_resource path="res://Infector.gd" type="Script" id=2]
 
-[sub_resource type="CapsuleShape2D" id=5]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 24.0
-height = 0.0
+height = 32.0
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
 
 uniform float strength = 1.0;
@@ -24,6 +24,12 @@ float cyclic(float t) {
 	return cyclic;
 }
 
+float pulsing(float t) {
+	float growth = 0.5;
+	float speed = 4.0;
+	float pulse = growth * mod(t, speed) / speed;
+	return pulse;
+}
 
 void vertex(){
 	pos = UV;
@@ -31,7 +37,6 @@ void vertex(){
 
 void fragment() {
 	float t = cyclic(TIME);
-	float intensity = 1.0 - abs(pos.x);
 	
 	vec2 timeshift = vec2(2.0 * pos.x, pos.y + TIME * 0.5 * strength);
 	float m = texture(timeflow, timeshift).r;
@@ -45,38 +50,41 @@ void fragment() {
 	float distance_from_center = sqrt((pow(dist_from_center_y, 2.0) + pow(dist_from_center_x, 2.0)));
 	float a = clamp(0.0, 1.0, 1.0 - distance_from_center - 0.5 * n);
 	float r = n + 0.5 * t;
-	COLOR = vec4(r * infection_color.rgb, a * strength);
+	COLOR = vec4(r, infection_color.gb, a * strength);
 }
 "
 
-[sub_resource type="OpenSimplexNoise" id=2]
+[sub_resource type="OpenSimplexNoise" id=3]
 
-[sub_resource type="NoiseTexture" id=3]
+[sub_resource type="NoiseTexture" id=4]
 seamless = true
-noise = SubResource( 2 )
+noise = SubResource( 3 )
 
-[sub_resource type="OpenSimplexNoise" id=6]
+[sub_resource type="OpenSimplexNoise" id=5]
 period = 128.0
 
-[sub_resource type="NoiseTexture" id=7]
-noise = SubResource( 6 )
+[sub_resource type="NoiseTexture" id=6]
+noise = SubResource( 5 )
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 2 )
 shader_param/strength = 1.0
 shader_param/infection_color = Plane( 1, 1, 1, 1 )
-shader_param/noise = SubResource( 3 )
-shader_param/timeflow = SubResource( 7 )
+shader_param/noise = SubResource( 4 )
+shader_param/timeflow = SubResource( 6 )
 
 [node name="Infection" type="Node2D"]
 script = ExtResource( 2 )
-size = 1.0
 
 [node name="InfectionZone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InfectionZone"]
-shape = SubResource( 5 )
+visible = false
+position = Vector2( 0, -16 )
+shape = SubResource( 1 )
 
 [node name="TextureShape" type="Sprite" parent="InfectionZone"]
-material = SubResource( 4 )
+material = SubResource( 7 )
+position = Vector2( 0, -16 )
+scale = Vector2( 1, 2 )
 texture = ExtResource( 1 )
