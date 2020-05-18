@@ -10,6 +10,9 @@ export_presets.cfg
 .mono/
 mono_crash.*.json
 
+# Build artifacts
+build/
+
 # System/tool-specific ignores
 .directory
 *~

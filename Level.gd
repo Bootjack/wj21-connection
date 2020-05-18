@@ -3,6 +3,7 @@ extends Node2D
 
 signal level_won
 signal level_lost
+signal level_incomplete
 
 export var destination_path:NodePath
 export var objective_paths = []
@@ -17,6 +18,8 @@ var player:Player
 var tilemaps = []
 
 func _ready():
+	pause_mode = Node.PAUSE_MODE_STOP
+
 	if (!player):
 		player = $YSort/Player
 	
@@ -51,6 +54,8 @@ func _process(_delta:float):
 func _on_destination_reached():
 	if (objectives_met()):
 		emit_signal("level_won")
+	else:
+		emit_signal("level_incomplete")
 
 func get_class():
 	return "Level"

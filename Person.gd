@@ -100,8 +100,6 @@ func floor_height():
 	for tilemap in tilemaps:
 		tile_position = tilemap.world_to_map(global_position)
 		tile = tilemap.get_cellv(tile_position)
-		if (is_class("Player")):
-			print("tile_position: ", tile_position)
 		if (tile >= 0):
 			highest = max(highest, tilemap_heights[i])
 		i += 1
