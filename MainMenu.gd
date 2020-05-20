@@ -42,14 +42,14 @@ func level_lost():
 	$Canvas/Result/Label.text = "TP Lost!"
 	$Canvas/Result.visible = true
 	get_tree().paused = true
+	toggle_restart()
 	game_over_timer.start(2.5)
 
 func level_over():
 	$Canvas/Result.visible = false
-	$Canvas/Menu/Buttons/StartButton.disconnect("button_up", self, "restart_level")
-	$Canvas/Menu/Buttons/StartButton.connect("button_up", self, "start_level")
 	active_scene.disconnect("level_won", self, "level_won")
 	active_scene.disconnect("level_lost", self, "level_lost")
+	active_scene.disconnect("level_incomplete", self, "level_incomplete")
 	$Canvas/Menu.visible = true
 	self.remove_child(active_scene)
 
@@ -58,6 +58,7 @@ func level_won():
 	$Canvas/Result.visible = true
 	$Canvas/Menu/Buttons/NextButton.disabled = false
 	get_tree().paused = true
+	toggle_restart()
 	game_over_timer.start(2.5)
 
 func main_menu():
@@ -100,6 +101,11 @@ func start_level():
 	$Canvas/Menu.visible = false
 
 func toggle_menu():
+	get_tree().paused = true
 	active_scene.get_node("HUD").toggle()
 	active_scene.visible = !active_scene.visible
 	$Canvas/Menu.visible = !$Canvas/Menu.visible
+
+func toggle_restart():
+	$Canvas/Menu/Buttons/StartButton.disconnect("button_up", self, "restart_level")
+	$Canvas/Menu/Buttons/StartButton.connect("button_up", self, "start_level")

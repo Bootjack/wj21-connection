@@ -4,7 +4,7 @@
 [ext_resource path="res://MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=3]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -57,7 +57,7 @@ __meta__ = {
 [node name="StartButton" type="Button" parent="Canvas/Menu/Buttons"]
 margin_right = 512.0
 margin_bottom = 44.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.254902, 0.45098, 0.796078, 1 )
 custom_colors/font_color_hover = Color( 0.796078, 1, 0.188235, 1 )
 custom_colors/font_color_pressed = Color( 0.945098, 0.968627, 0.690196, 1 )
@@ -68,7 +68,7 @@ flat = true
 margin_top = 48.0
 margin_right = 512.0
 margin_bottom = 92.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.254902, 0.45098, 0.796078, 1 )
 custom_colors/font_color_hover = Color( 0.796078, 1, 0.188235, 1 )
 custom_colors/font_color_pressed = Color( 0.945098, 0.968627, 0.690196, 1 )
@@ -80,7 +80,7 @@ flat = true
 margin_top = 96.0
 margin_right = 512.0
 margin_bottom = 140.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.254902, 0.45098, 0.796078, 1 )
 custom_colors/font_color_hover = Color( 0.796078, 1, 0.188235, 1 )
 custom_colors/font_color_pressed = Color( 0.945098, 0.968627, 0.690196, 1 )
@@ -92,7 +92,7 @@ flat = true
 margin_top = 144.0
 margin_right = 512.0
 margin_bottom = 188.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.254902, 0.45098, 0.796078, 1 )
 custom_colors/font_color_hover = Color( 0.796078, 1, 0.188235, 1 )
 custom_colors/font_color_pressed = Color( 0.945098, 0.968627, 0.690196, 1 )
